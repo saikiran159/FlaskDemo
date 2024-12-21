@@ -43,3 +43,14 @@ def create_message():
     MESSSAGE_STORE.append(message)
 
     return make_response(jsonify(message),200)
+
+message_handler.route("/list")
+def fetchall():
+    return make_response(jsonify({"content":MESSSAGE_STORE}),200)
+
+message_handler.route("/get/<id>")
+def fetch(id):
+    pick = [each_msg for each_msg in MESSSAGE_STORE if each_msg["id"] == id]
+    if pick:
+        return make_response(jsonify(pick),200)
+    return make_response(jsonify({"message":"not found"}),404)
