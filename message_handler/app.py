@@ -46,11 +46,11 @@ def create_message():
 
     return make_response(jsonify(message),200)
 
-message_handler.route("/list")
+@message_handler.route("/list")
 def fetchall():
     return make_response(jsonify({"content":MESSSAGE_STORE}),200)
 
-message_handler.route("/get/<id>")
+@message_handler.route("/get/<id>")
 def fetch(id):
     pick = [each_msg for each_msg in MESSSAGE_STORE if each_msg["id"] == id]
     if pick:
