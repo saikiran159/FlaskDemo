@@ -1,5 +1,5 @@
 from flask import Blueprint,request,make_response,jsonify
-from handlers import json_handler,javascript_handler,xml_handler,html_handler,text_handler,form_handler
+from .handlers import json_handler,javascript_handler,xml_handler,html_handler,text_handler,form_handler
 import uuid
 
 message_handler = Blueprint("message_handler",__name__,url_prefix="/messages")
