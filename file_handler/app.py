@@ -50,3 +50,16 @@ def uploader():
         
         STORED_FILES.append(message)
         return make_response(jsonify(message),200)
+    else:
+        stream = request.data
+        id = uuid.uuid4().hex
+        if stream is None:
+            return make_response(jsonify({"message":"file not uploaded","error":True}),400)
+        
+        filestorepath = os.path.join("file_handler","STORE","score.pdf")
+        with open(filestorepath,"wb") as filewriter:
+            filewriter.write(stream)
+        
+        message = {"id":id,"content":filestorepath}
+        STORED_FILES.append(message)
+        return make_response(jsonify(message),200)
