@@ -13,7 +13,6 @@ CONTENT_TYPE_MAPPINGS = {
     "text/html":"html_handler",
     "text/plain":"text_handler",
     "application/x-www-form-urlencoded":"form_handler",
-    "multipart/form-data":"form_handler",
 }
 
 @message_handler.route("/create",methods=["POST"])
@@ -24,6 +23,9 @@ def create_message():
         return make_response(jsonify({"message":"please provide content-type"}),400)
     
     store_type = CONTENT_TYPE_MAPPINGS.get(content_type,None)
+    if store_type is None:
+        store_type = "form_handler" if content_type.startswith("multipart/form-data") else None
+
     if store_type is None:
         return make_response(jsonify({"message":f"we are currently not supporting {content_type} content-type",
                               "supported_content_types":list(CONTENT_TYPE_MAPPINGS.keys())}),404)
