@@ -1,6 +1,9 @@
 from flask import Flask,make_response,jsonify
 from message_handler.app import message_handler
 from file_handler.app import file_handler
+import os
+
+os.makedirs(os.path.join("file_handler","STORE"),exist_ok=True)
 
 app = Flask(__name__)
 app.register_blueprint(message_handler)
