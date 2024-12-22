@@ -7,7 +7,7 @@ jobs:
   test-python:
     # Install dependencies and run tests
     docker:
-      - image: cimg/python:3.8-node
+      - image: cimg/python:3.9-node
     steps:
       - checkout
       - python/install-packages
@@ -31,4 +31,8 @@ workflows:
       - test-python
     # - deploy:
     #     requires:
+<<<<<<< HEAD
     #       - test-python
+=======
+    #       - test-python
+>>>>>>> 7c9b7e6cef487287c30312feb99f4bdd0992a7f6
